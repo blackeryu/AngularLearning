@@ -1,0 +1,79 @@
+<app-todo-list></app-todo-list>
+
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>列車進入月台車站之站名</th>
+      <th>行駛目的地</th>
+      <th>資料更新日期</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of list; index as i">
+      <td>{{i+1}}</td>
+      <td>{{item.Station}}</td>
+      <td>{{item.Destination}}</td>
+      <td>{{ item.UpdateTime | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+    </tr>
+  </tbody>
+</table>
+<!-- <p app:Highlight>This is invalid</p> -->
+<h1>My First Attribute Directive</h1>
+
+<h2>Pick a highlight color</h2>
+<div>
+  <input type="radio" name="colors" (click)="color='lightgreen'">Green
+  <input type="radio" name="colors" (click)="color='yellow'">Yellow
+  <input type="radio" name="colors" (click)="color='cyan'">Cyan
+</div>
+
+{{color}}
+<p [appHighlight]="color">Highlight me!</p>
+<input [(ngModel)] = "power">
+<!-- Super Hero Power: {{power | exponentialStrength: factor}} -->
+
+
+
+<!-- 綁定 form submit 的事件就可以按下 enter 就能觸發事件了 -->
+<form (ngSubmit)="addMessage()">
+
+  <p>
+    名稱：
+    <input
+      type="text"
+      name="name"
+      [(ngModel)]="name"
+    >
+  </p>
+
+  <p>
+    內容：
+    <input
+      type="text"
+      name="content"
+      [(ngModel)]="content"
+    >
+  </p>
+
+  <p>
+    <button type="submit">新增留言</button>
+  </p>
+  
+</form>
+
+<!-- 用 ng-container 來迴圈就不需要額外再包一層了 -->
+<ng-container *ngFor="let message of messages">
+
+  <p>
+    留言人： {{ message.name }}
+  </p>
+
+  <p>
+    訊息內容： {{ message.content }}
+  </p>
+
+</ng-container>
